@@ -1,8 +1,3 @@
-%% Reset Everything
-
-close all
-clear all
-
 %% Time / Hour Angle
 tm = 0:1:1439;  %Increment minutes in one day
 th = tm/60;     %Convert so that it increments fraction of hrs in on day.
@@ -67,7 +62,7 @@ win_sinH = sind(H);
 win_cosBeta = cosd(win_altitude_angle);
 
 win_sinphi = (win_cosDec.*win_sinH)./win_cosBeta;
-win_azimuth_angle = asind(win_sinphi);
+win_azimuth_angle = asind(win_sinphi));
 
  for(i=1:length(H))
      if (sum_cosH(i) >= (tand(sum_declimation)/tand(lat)))
@@ -79,32 +74,22 @@ win_azimuth_angle = asind(win_sinphi);
      end
  end
  
- for(i=1:length(H))
-     if(sum_altitude_angle(i) < 0)
-         sum_altitude_angle(i) = 0;
+  for(i=1:length(H))
+     if (sum_cosH(i) >= (tand(sum_declimation)/tand(lat)))
+     else if(sum_azimuth_angle(i)<0)
+        sum_azimuth_angle(i) = -180 - sum_azimuth_angle(i);
+     else 
+     sum_azimuth_angle(i) = 180 - sum_azimuth_angle(i);
+         end
      end
  end
  
-  for(i=1:length(H))
-     if (win_cosH(i) >= (tand(win_declimation)/tand(lat)))
-     else if(win_azimuth_angle(i)<0)
-        win_azimuth_angle(i) = -180 - win_azimuth_angle(i);
-     else 
-     win_azimuth_angle(i) = 180 - win_azimuth_angle(i);
-         end
-     end
-  end
-  
-   for(i=1:length(H))
-     if(win_altitude_angle(i) < 0)
-         win_altitude_angle(i) = 0;
-     end
-   end
  
+ 
+
+
 figure(1)
 plot(sum_azimuth_angle , sum_altitude_angle)
-hold on
-plot(win_azimuth_angle , win_altitude_angle)
 
 
 %% Irradiance 

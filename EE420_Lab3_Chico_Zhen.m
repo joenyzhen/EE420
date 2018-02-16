@@ -33,9 +33,7 @@ win_declimation = 23.45.*sind((360/365).*(n_win - 81));
         
 %% Altitude Angle 
 % Altitude angle at solar noon, Bn - angle between the sun and the local
-% horizon:
-    % Bn = 90 - Lat - Dec.
-    
+% horizon:   
     % Location:
         % Latitude: 35.484 deg.
         % Longitude: 120.672 deg. 
@@ -57,11 +55,6 @@ win_declimation = 23.45.*sind((360/365).*(n_win - 81));
     win_sinDec = sind(win_declimation);
     win_sinbeta = (win_coslat.*win_cosDec.*win_cosH) +  win_sinlat.*win_sinDec;
     win_altitude_angle = asind(win_sinbeta);
-    
-    
-        
-    %sum_altitude = 90 - lat - sum_declimation
-    %win_altitude = 90 - lat - win_declimation
     
     %% Azimuth Angle 
 % The azimuth angle, Az, of the sun or a celetial body (St) is depending on
@@ -138,7 +131,7 @@ plot(th, sum_I)
 hold on 
 plot(th, win_I)
 xlabel('Time (Hrs)')
-ylabel('Irradiance(w/m^2)')
+ylabel('Irradiance (W/m^2)')
 title('Summer and Winter Irradiance vs Time')
 legend('Summer', 'Winter', 'Location', 'NorthEast')
 
@@ -178,7 +171,7 @@ plot(th, sum_solar_panel)
 hold on
 plot(th, win_solar_panel)
 xlabel('Time (Hrs)')
-ylabel('Irradiance(w/m^2)')
+ylabel('Power (W)')
 title('Summer and Winter SOLAR PANEL Power vs Time')
 
 temp_coeff = 0.38/100; %Power Temperature Coefficient 0.38%/deg C.
@@ -227,4 +220,3 @@ win_panel_average_energy = win_panel_energy/win_sunlight
 %% Average Generated Energy Per Daylight With Correction 
 sum_panel_average_energy_C = sum_panel_energy_C/sum_sunlight
 win_panel_average_energy_C = win_panel_energy_C/win_sunlight
-

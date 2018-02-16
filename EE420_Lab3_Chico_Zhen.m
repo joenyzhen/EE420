@@ -135,8 +135,10 @@ win_HSR_pos = acosd(-tand(lat).*tand(win_declimation));
 win_HSR_neg = acosd((tand(lat).*tand(win_declimation)));
 
 sum_sunrise_pos = 12 - sum_HSR_pos/15
-sum_sunrise_neg = 12 - sum_HSR_neg/15
+sum_sunrise_neg = 24 - sum_HSR_neg/15
 win_sunrise_pos = 12 - win_HSR_pos/15
-win_sunrise_neg = 12 - win_HSR_neg/15
+win_sunrise_neg = 24 - win_HSR_neg/15
 
+sum_sunlight = sum_sunrise_neg - sum_sunrise_pos
+win_sunlight = win_sunrise_neg - win_sunrise_pos
     

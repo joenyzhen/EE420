@@ -155,7 +155,6 @@ sum_average_energy = sum_energy./sum_sunlight
 win_average_energy = win_energy./win_sunlight
 
 %% Solar Panel Where Efficiency is 20%
-%This currently considers without the building site. 
 eta = 0.2;
 sum_solar_panel = eta.*sum_I;
 win_solar_panel = eta.*win_I;
@@ -164,6 +163,35 @@ figure(3)
 plot(th, sum_solar_panel)
 hold on
 plot(th, win_solar_panel)
+xlabel('Time (Hrs)')
+ylabel('Irradiance(w/m^2)')
+title('Summer and Winter SOLAR PANEL Power vs Time')
 
 temp_coeff = 0.38/100; %Power Temperature Coefficient 0.38%/deg C.
+
+%Ambient Temperature of Site in degree F
+sum_temp = 75 + 30*sin(0.0043633*(tm - 540));
+win_temp = 51 + 19*sin(0.0043633*(tm - 300));
+
+%Panel Temperature of Panel in degree F
+sum_panel_temp_F = sum_temp + 0.05625.*sum_I;
+win_panel_temp_F = win_temp + 0.05625.*win_I;
+
+%Converting deg F to deg C
+sum_panel_temp_C = (sum_panel_temp_F - 32)*(5/9);
+win_panel_temp_C = (win_panel_temp_F - 32)*(5/9);
+
+%Scalar Value Due to Degrees in C
+sum_scalar = temp_coeff.*sum_panel_temp_C;
+win_scalar = temp_coeff.*win_panel_temp_C;
+
+%Find Actual Power Generation Versus Time With The Effect of Temperature
+sum_actual_panel = sum_scalar.*sum_solar_panel;
+win_actual_panel = win_scalar.*win_solar_panel;
+
+hold on
+plot(th, sum_actual_panel)
+plot(th, win_actual_panel)
+legend('Summer w/o Reduction', 'Winter w/o Reduction', 'Summer w/ Reduction', 'Winter w/ Reduction','Location', 'NorthEastOutside')
+
     

@@ -165,8 +165,7 @@ hold on
 plot(th, win_solar_panel)
 xlabel('Time (Hrs)')
 ylabel('Irradiance(w/m^2)')
-title('Summer and Winter  SOLAR PANEL Power vs Time')
-legend('Summer', 'Winter', 'Location', 'NorthEast')
+title('Summer and Winter SOLAR PANEL Power vs Time')
 
 temp_coeff = 0.38/100; %Power Temperature Coefficient 0.38%/deg C.
 
@@ -187,7 +186,18 @@ sum_scalar = temp_coeff.*sum_panel_temp_C;
 win_scalar = temp_coeff.*win_panel_temp_C;
 
 %Find Actual Power Generation Versus Time With The Effect of Temperature
-sum_actual_panel = sum_scalar .*sum_solar_panel;
-win_actual_panel = win_sc
+sum_actual_panel = sum_scalar.*sum_solar_panel;
+win_actual_panel = win_scalar.*win_solar_panel;
 
-    
+hold on
+plot(th, sum_actual_panel)
+plot(th, win_actual_panel)
+legend('Summer w/o Reduction', 'Winter w/o Reduction', 'Summer w/ Reduction', 'Winter w/ Reduction','Location', 'NorthEastOutside')
+
+%% Energy Without Temperature Correction
+sum_panel_array_energy = ((th(2:end)-th(1:end-1)).*(sum_solar_panel(2:end)+sum_solar_panel(1:end-1)))/2;
+win_panel_array_energy = ((th(2:end)-th(1:end-1)).*(win_solar_panel(2:end)+win_solar_panel(1:end-1)))/2;
+sum_panel_energy = sum(sum_panel_array_energy)
+win_panel_energy = sum(win_panel_array_energy)
+
+%% Energy With Temperature Correction 

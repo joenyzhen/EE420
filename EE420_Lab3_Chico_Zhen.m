@@ -194,4 +194,16 @@ plot(th, sum_actual_panel)
 plot(th, win_actual_panel)
 legend('Summer w/o Reduction', 'Winter w/o Reduction', 'Summer w/ Reduction', 'Winter w/ Reduction','Location', 'NorthEastOutside')
 
-    
+%% Energy Without Temperature Correction
+sum_panel_array_energy = ((th(2:end)-th(1:end-1)).*(sum_solar_panel(2:end)+sum_solar_panel(1:end-1)))/2;
+win_panel_array_energy = ((th(2:end)-th(1:end-1)).*(win_solar_panel(2:end)+win_solar_panel(1:end-1)))/2;
+sum_panel_energy = sum(sum_panel_array_energy)
+win_panel_energy = sum(win_panel_array_energy)
+
+%% Energy With Temperature Correction 
+sum_panel_array_energy_C = ((th(2:end)-th(1:end-1)).*(sum_actual_panel(2:end)+sum_actual_panel(1:end-1)))/2;
+win_panel_array_energy_C = ((th(2:end)-th(1:end-1)).*(win_actual_panel(2:end)+win_actual_panel(1:end-1)))/2;
+sum_panel_energy_C = sum(sum_panel_array_energy_C)
+win_panel_energy_C = sum(win_panel_array_energy_C)
+
+

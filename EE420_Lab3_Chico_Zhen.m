@@ -6,7 +6,7 @@ clear all
 %% Time / Hour Angle
 tm = 0:1:1439;  %Increment minutes in one day
 th = tm/60;     %Convert so that it increments fraction of hrs in on day.
-h = 12 - th;    %Convert to difference between solar noob
+h = 12 - th;    %Convert to difference between solar noon
 H = 15*h;       %Convert to Hour Angle 
 
 %% Declimantion Angle
@@ -145,4 +145,17 @@ win_sunlight = win_sunrise_neg - win_sunrise_pos
 %% Average Energy Per Daylight Hour
 sum_average_energy = sum_energy./sum_sunlight
 win_average_energy = win_energy./win_sunlight
+
+%% Solar Panel Where Efficiency is 20%
+%This currently considers without the building site. 
+eta = 0.2;
+sum_solar_panel = eta.*sum_I;
+win_solar_panel = eta.*win_I;
+
+figure(3)
+plot(th, sum_solar_panel)
+hold on
+plot(th, win_solar_panel)
+
+temp_coeff = 0.38/100 %Power Temperature Coefficient 0.38%/deg C.
     

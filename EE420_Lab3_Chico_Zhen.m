@@ -127,9 +127,16 @@ sum_energy = sum(sum_array_energy)
 win_array_energy = ((th(2:end)-th(1:end-1)).*(win_I(2:end)+win_I(1:end-1)))/2;
 win_energy = sum(win_array_energy)
 
+%% Amount of Daylight
 
+sum_HSR_pos = acosd(-tand(lat).*tand(sum_declimation));
+sum_HSR_neg = acosd((tand(lat).*tand(sum_declimation)));
+win_HSR_pos = acosd(-tand(lat).*tand(win_declimation));
+win_HSR_neg = acosd((tand(lat).*tand(win_declimation)));
 
+sum_sunrise_pos = 12 - sum_HSR_pos/15
+sum_sunrise_neg = 12 - sum_HSR_neg/15
+win_sunrise_pos = 12 - win_HSR_pos/15
+win_sunrise_neg = 12 - win_HSR_neg/15
 
-
-  
     

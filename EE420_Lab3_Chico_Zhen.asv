@@ -103,6 +103,9 @@ win_azimuth_angle = asind(win_sinphi);
  
 figure(1)
 plot(sum_azimuth_angle , sum_altitude_angle)
+xlabel('Azimuth Angle (deg)')
+ylabel('Altitude Angle (deg)')
+title('Summer Azimuth Angle vs Altitude Angle
 hold on
 plot(win_azimuth_angle , win_altitude_angle)
 
@@ -147,6 +150,7 @@ sum_average_energy = sum_energy./sum_sunlight
 win_average_energy = win_energy./win_sunlight
 
 %% Solar Panel Where Efficiency is 20%
+%This currently considers without the building site. 
 eta = 0.2;
 sum_solar_panel = eta.*sum_I;
 win_solar_panel = eta.*win_I;
@@ -155,4 +159,6 @@ figure(3)
 plot(th, sum_solar_panel)
 hold on
 plot(th, win_solar_panel)
+
+temp_coeff = 0.38/100 %Power Temperature Coefficient 0.38%/deg C.
     

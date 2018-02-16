@@ -103,8 +103,12 @@ win_azimuth_angle = asind(win_sinphi);
  
 figure(1)
 plot(sum_azimuth_angle , sum_altitude_angle)
+xlabel('Azimuth Angle (deg)')
+ylabel('Altitude Angle (deg)')
 hold on
 plot(win_azimuth_angle , win_altitude_angle)
+title('Summer and Winter Azimuth Angle vs Altitude Angle')
+legend('Summer', 'Winter', 'Location', 'NorthEast')
 
 
 %% Irradiance 
@@ -120,6 +124,11 @@ figure(2)
 plot(th, sum_I)
 hold on 
 plot(th, win_I)
+xlabel('Time (Hrs)')
+ylabel('Irradiance(w/m^2)')
+title('Summer and Winter Irradiance vs Time')
+legend('Summer', 'Winter', 'Location', 'NorthEast')
+
 
 sum_array_energy = ((th(2:end)-th(1:end-1)).*(sum_I(2:end)+sum_I(1:end-1)))/2;
 sum_energy = sum(sum_array_energy)

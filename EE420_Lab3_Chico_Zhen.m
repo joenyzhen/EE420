@@ -1,5 +1,19 @@
-%% Reset Everything
+%% EE 420 Lab 3 - Solar Resource
+% This MATLAB code calculates altitude, azimuth, and declimation.
+% These calculations assist in calculating other variables such as the
+% total energy of the specific day, number of daylight hours for the date, 
+% average incident energy.
 
+% This code also calculates how much power a typical solar panel can
+% generate given the efficiency of the system. It even takes into
+% consideration of solar panel reductions due to temperatures during the
+% day. 
+
+% Author: Joshua Cinco and Joeny Zhen
+% Date:   2/15/18
+
+%% Reset Everything
+clc
 close all
 
 %% Time / Hour Angle

@@ -206,4 +206,11 @@ win_panel_array_energy_C = ((th(2:end)-th(1:end-1)).*(win_actual_panel(2:end)+wi
 sum_panel_energy_C = sum(sum_panel_array_energy_C)
 win_panel_energy_C = sum(win_panel_array_energy_C)
 
+%% Average Generated Energy Per Daylight Without Correction
+sum_panel_average_energy = sum_panel_energy/sum_sunlight
+win_panel_average_energy = win_panel_energy/win_sunlight
+
+%% Average Generated Energy Per Daylight With Correction 
+sum_panel_average_energy_C = sum_panel_energy_C/sum_sunlight
+win_panel_average_energy_C = win_panel_energy_C/win_sunlight
 

@@ -141,4 +141,8 @@ win_sunrise_neg = 24 - win_HSR_neg/15
 
 sum_sunlight = sum_sunrise_neg - sum_sunrise_pos
 win_sunlight = win_sunrise_neg - win_sunrise_pos
+
+%% Average Energy Per Daylight Hour
+sum_average_energy = sum_energy./sum_sunlight
+win_average_energy = win_energy./win_sunlight
     

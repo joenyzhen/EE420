@@ -110,13 +110,24 @@ plot(win_azimuth_angle , win_altitude_angle)
 %% Irradiance 
 % Irradiance of atmosphere: 1377 w/m^2
 
-sum_AM = 1./sin(sum_altitude_angle);
-%win_AM = 1./sin(win_altitude_angle);
+sum_AM = 1./sind(sum_altitude_angle);
+win_AM = 1./sind(win_altitude_angle);
 
 sum_I = 1377.*(0.7.^(sum_AM).^(0.678));
-%win_I = 1377.*(0.7.^(win_AM).^(0.678));
+win_I = 1377.*(0.7.^(win_AM).^(0.678));
+
 figure(2)
-plot(tm, sum_I)
+plot(th, sum_I)
+hold on 
+plot(th, win_I)
+
+sum_array_energy = ((th(2:end)-th(1:end-1)).*(sum_I(2:end)+sum_I(1:end-1)))/2;
+sum_energy = sum(sum_array_energy)
+
+win_array_energy = ((th(2:end)-th(1:end-1)).*(win_I(2:end)+win_I(1:end-1)))/2;
+win_energy = sum(win_array_energy)
+
+
 
 
 

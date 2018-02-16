@@ -1,3 +1,8 @@
+%% Reset Everything
+
+close all
+clear all
+
 %% Time / Hour Angle
 tm = 0:1:1439;  %Increment minutes in one day
 th = tm/60;     %Convert so that it increments fraction of hrs in on day.
@@ -62,7 +67,7 @@ win_sinH = sind(H);
 win_cosBeta = cosd(win_altitude_angle);
 
 win_sinphi = (win_cosDec.*win_sinH)./win_cosBeta;
-win_azimuth_angle = asind(win_sinphi));
+win_azimuth_angle = asind(win_sinphi);
 
  for(i=1:length(H))
      if (sum_cosH(i) >= (tand(sum_declimation)/tand(lat)))
@@ -74,34 +79,55 @@ win_azimuth_angle = asind(win_sinphi));
      end
  end
  
-  for(i=1:length(H))
-     if (sum_cosH(i) >= (tand(sum_declimation)/tand(lat)))
-     else if(sum_azimuth_angle(i)<0)
-        sum_azimuth_angle(i) = -180 - sum_azimuth_angle(i);
-     else 
-     sum_azimuth_angle(i) = 180 - sum_azimuth_angle(i);
-         end
+ for(i=1:length(H))
+     if(sum_altitude_angle(i) < 0)
+         sum_altitude_angle(i) = 0;
      end
  end
  
+  for(i=1:length(H))
+     if (win_cosH(i) >= (tand(win_declimation)/tand(lat)))
+     else if(win_azimuth_angle(i)<0)
+        win_azimuth_angle(i) = -180 - win_azimuth_angle(i);
+     else 
+     win_azimuth_angle(i) = 180 - win_azimuth_angle(i);
+         end
+     end
+  end
+  
+   for(i=1:length(H))
+     if(win_altitude_angle(i) < 0)
+         win_altitude_angle(i) = 0;
+     end
+   end
  
- 
-
-
 figure(1)
 plot(sum_azimuth_angle , sum_altitude_angle)
+hold on
+plot(win_azimuth_angle , win_altitude_angle)
 
 
 %% Irradiance 
 % Irradiance of atmosphere: 1377 w/m^2
 
-sum_AM = 1./sin(sum_altitude_angle);
-%win_AM = 1./sin(win_altitude_angle);
+sum_AM = 1./sind(sum_altitude_angle);
+win_AM = 1./sind(win_altitude_angle);
 
 sum_I = 1377.*(0.7.^(sum_AM).^(0.678));
-%win_I = 1377.*(0.7.^(win_AM).^(0.678));
+win_I = 1377.*(0.7.^(win_AM).^(0.678));
+
 figure(2)
-plot(tm, sum_I)
+plot(th, sum_I)
+hold on 
+plot(th, win_I)
+
+sum_array_energy = ((th(2:end)-th(1:end-1)).*(sum_I(2:end)+sum_I(1:end-1)))/2;
+sum_energy = sum(sum_array_energy)
+
+win_array_energy = ((th(2:end)-th(1:end-1)).*(win_I(2:end)+win_I(1:end-1)))/2;
+win_energy = sum(wi_array_energy)
+
+
 
 
 

@@ -1,11 +1,10 @@
 %% Reset Everything
 
 close all
-clear all
 
 %% Time / Hour Angle
 tm = 0:1:1439;  %Increment minutes in one day
-th = tm/60;     %Convert so that it increments fraction of hrs in on day.
+th = tm/60;     %Convert so that it increments fraction of hrs in one day.
 h = 12 - th;    %Convert to difference between solar noon
 H = 15*h;       %Convert to Hour Angle 
 
@@ -69,7 +68,7 @@ win_cosBeta = cosd(win_altitude_angle);
 win_sinphi = (win_cosDec.*win_sinH)./win_cosBeta;
 win_azimuth_angle = asind(win_sinphi);
 
- for(i=1:length(H))
+ for i=1:length(H)
      if (sum_cosH(i) >= (tand(sum_declimation)/tand(lat)))
      else if(sum_azimuth_angle(i)<0)
         sum_azimuth_angle(i) = -180 - sum_azimuth_angle(i);
@@ -79,13 +78,13 @@ win_azimuth_angle = asind(win_sinphi);
      end
  end
  
- for(i=1:length(H))
+ for i=1:length(H)
      if(sum_altitude_angle(i) < 0)
          sum_altitude_angle(i) = 0;
      end
  end
  
-  for(i=1:length(H))
+  for i=1:length(H)
      if (win_cosH(i) >= (tand(win_declimation)/tand(lat)))
      else if(win_azimuth_angle(i)<0)
         win_azimuth_angle(i) = -180 - win_azimuth_angle(i);
@@ -95,7 +94,7 @@ win_azimuth_angle = asind(win_sinphi);
      end
   end
   
-   for(i=1:length(H))
+   for i=1:length(H)
      if(win_altitude_angle(i) < 0)
          win_altitude_angle(i) = 0;
      end
@@ -166,5 +165,5 @@ plot(th, sum_solar_panel)
 hold on
 plot(th, win_solar_panel)
 
-temp_coeff = 0.38/100 %Power Temperature Coefficient 0.38%/deg C.
+temp_coeff = 0.38/100; %Power Temperature Coefficient 0.38%/deg C.
     

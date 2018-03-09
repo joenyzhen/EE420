@@ -76,3 +76,29 @@ v_ratio_80 = (h_ratio_80).^alpha_new;
 V0_80 = v_test(:, 5);
 V_80 = V0_80.*v_ratio_80;
 plot(time(1:(end-1)), V_80(1:(end-1)));
+
+%% Part 6
+
+V_38avg = mean(V0)
+V_49avg = mean(V_49)
+V_59avg = mean(V_59)
+V_80avg = mean(V_80)
+
+
+%% Part 7
+
+% P = 0.5*rho*A*V^3
+ 
+rho = 1.225
+A = 1
+
+V_cube_59 = (V_59.^3);
+P = 0.5*rho*A*mean(V_cube_59)
+
+%% Part 8
+
+V_cube_80 = V_80.^3;
+P = 0.5*rho*A*mean(V_cube_80)
+
+%% Part 9
+

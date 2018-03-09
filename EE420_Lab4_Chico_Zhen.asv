@@ -21,8 +21,8 @@ time = (day-1) + (hours./24) + (minutes./(24*60));
 H = 49;
 H0 = 38.6;
 V0 = v_test(:, 5);
-V = v_test(:, 9);
-v_ratio = V./V0;
+V_49 = v_test(:, 9);
+v_ratio = V_49./V0;
 h_ratio = H./H0;
 alpha = log(v_ratio)./log(h_ratio);
 figure(1)
@@ -35,8 +35,8 @@ title('Plotting Wind Shear Exponent; Ref = 38.6m and Second Point = 49m')
 H_new = 59.4;
 H0_new = 38.6;
 V0_new = v_test(:, 5);
-V_new = v_test(:, 13);
-v_ratio_new = V_new./V0_new;
+V_59 = v_test(:, 13);
+v_ratio_new = V_59./V0_new;
 h_ratio_new = H_new./H0_new;
 
 alpha_new = log(v_ratio_new)./log(h_ratio_new);
@@ -51,4 +51,46 @@ title('Plotting Wind Shear Exponent; Ref = 38.6m and Second Point = 59.4m')
 H_4 = 59.4;
 H0_4 = 38.6;
 h_ratio_4 = H_4./H0_4;
-v_ratiO_4 = (h_ratio_4)^(
+v_ratio_4 = (h_ratio_4).^(alpha);
+V0_4 = v_test(:, 5);
+V_4 = V0_4.*v_ratio_4;
+figure(3);
+plot(time(1:(end-1)), V_4(1:(end-1)));
+hold on
+plot(time(1:(end-1)), V_49(1:(end-1)));
+
+Error = V_4 - V_59;
+
+figure(4);
+plot(time(1:(end-1)), Error(1:(end-1)));
+
+Error_5_4 = V_59 - V_49;
+figure(5);
+plot(time(1:(end-1)), Error_5_4(1:(end-1)));
+
+%% Part 5
+H_80 = 80;
+H0_80 = 38.6;
+h_ratio_80 = H_80./H0_80;
+v_ratio_80 = (h_ratio_80).^alpha_new;
+V0_80 = v_test(:, 5);
+V_80 = V0_80.*v_ratio_80;
+plot(time(1:(end-1)), V_80(1:(end-1)));
+
+%% Part 6
+
+V_38avg = mean(V0)
+V_49avg = mean(V_49)
+V_59avg = mean(V_59)
+V_80avg = mean(V_80)
+
+
+%% Part 7
+
+V_cube_59 = (V_59.^3);
+P = 0.5*1.225*1*mean(total_V)
+
+%% Part 8
+
+V_
+

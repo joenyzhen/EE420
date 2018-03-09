@@ -116,7 +116,6 @@ plot(win_azimuth_angle , win_altitude_angle)
 title('Summer and Winter Azimuth Angle vs Altitude Angle')
 legend('Summer', 'Winter', 'Location', 'NorthEast')
 
-
 %% Irradiance 
 % Irradiance of atmosphere: 1377 w/m^2
 
@@ -134,7 +133,6 @@ xlabel('Time (Hrs)')
 ylabel('Irradiance (W/m^2)')
 title('Summer and Winter Irradiance vs Time')
 legend('Summer', 'Winter', 'Location', 'NorthEast')
-
 
 sum_array_energy = ((th(2:end)-th(1:end-1)).*(sum_I(2:end)+sum_I(1:end-1)))/2;
 sum_energy = sum(sum_array_energy)

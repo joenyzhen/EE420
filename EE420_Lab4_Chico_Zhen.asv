@@ -79,18 +79,40 @@ plot(time(1:(end-1)), V_80(1:(end-1)));
 
 %% Part 6
 
-V_38avg = mean(V0)
-V_49avg = mean(V_49)
-V_59avg = mean(V_59)
-V_80avg = mean(V_80)
+V_38avg = sum(V0)/length(time)
+V_49avg = sum(V_49)/length(time)
+V_59avg = sum(V_59)/length(time)
+V_80avg = sum(V_80)/length(time)
 
 
 %% Part 7
 
+% P = 0.5*rho*A*V^3
+% rho = 1.225 for 15 degrees C
+ 
+rho = 1.225
+A = 1
+
 V_cube_59 = (V_59.^3);
-P = 0.5*1.225*1*mean(total_V)
+Power_59 = 0.5*rho*A*(sum(V_cube_59)/length(time))
 
 %% Part 8
 
-V_
+V_cube_80 = V_80.^3;
+Power_80 = 0.5*rho*A*(sum(V_cube_80)/length(time))
 
+%% Part 9
+
+hour_conversion = (10*31*24)/4464 %converts time array into hour
+yr_total = (24*31*12)              %hours in a year
+eff = 0.42
+
+P_turbine = (0.5*rho*(pi*(40^2))*sum((V_cube_80)/(hour_conversion*length(time)))*eff)/(1*10^6) %Mwh
+
+P_turbine_yr = yr_total * P_turbine %Mwh in a year
+
+E_80 = P_turbine_yr * (3.6*10^9) %Joules*hr
+
+%% Part 10
+V_rayleigh_80 = 1.91*((sum(V_80)/length(V_80))
+P_turbine = (0.5*rho*(pi*(40^2))*sum((V_cube_80)/(hour_conversion*length(time)))*eff)/(1*10^6)
